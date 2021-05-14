@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "geo1", "geo1\geo1.csproj", "{DC4F3A1E-D8D3-4814-8459-6E15E88BBE8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoWrapper", "GeoWrapper\GeoWrapper.csproj", "{6F7698F8-7FB8-4F3E-A1A5-4BE040A2530E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC4F3A1E-D8D3-4814-8459-6E15E88BBE8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC4F3A1E-D8D3-4814-8459-6E15E88BBE8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC4F3A1E-D8D3-4814-8459-6E15E88BBE8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC4F3A1E-D8D3-4814-8459-6E15E88BBE8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F7698F8-7FB8-4F3E-A1A5-4BE040A2530E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F7698F8-7FB8-4F3E-A1A5-4BE040A2530E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F7698F8-7FB8-4F3E-A1A5-4BE040A2530E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F7698F8-7FB8-4F3E-A1A5-4BE040A2530E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E13B7FDB-02FF-430A-883D-97BB1B949C79}
+	EndGlobalSection
+EndGlobal
