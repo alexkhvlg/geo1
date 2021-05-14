@@ -45,11 +45,12 @@ namespace GeoWrapper.Services
             return workspaceResponse?.Workspaces?.Workspace;
         }
 
-        public async Task<bool> AddWorkspace(string Name)
+        public async Task<bool> AddWorkspace(string Name, string Href)
         {
             var created = await request().PostJsonAsync(new
             {
-                name = Name
+                name = Name,
+                href = Href
             }).ReceiveString();
             return created == Name;
         }

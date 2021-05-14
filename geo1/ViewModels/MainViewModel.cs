@@ -88,7 +88,7 @@ namespace geo1.ViewModels
             {
                 var wc = new WorkspaceService(new PerBaseUrlFlurlClientFactory());
                 wc.Configure(Server, Login, Password);
-                var IsCreated = await wc.AddWorkspace("test");
+                var IsCreated = await wc.AddWorkspace("test", "http://localhost:8080/geoserver/rest/workspaces/test.json");
                 Print($"Is created: {IsCreated}");
             }
             catch (Exception ex)
