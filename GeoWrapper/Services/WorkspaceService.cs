@@ -1,70 +1,84 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using GeoWrapper.Models;
-using Flurl;
 using Flurl.Http;
 using Newtonsoft.Json;
 using Flurl.Http.Configuration;
 
 namespace GeoWrapper.Services
 {
-    public class WorkspaceService
+    [SuppressMessage("ReSharper", "IdentifierTypo")]
+    [SuppressMessage("ReSharper", "StringLiteralTypo")]
+    public class WorkspaceService : FlurlBaseClass
     {
-        private IFlurlClient _flurlClient;
-        private readonly IFlurlClientFactory _flurlClientFac;
-        private string _server;
-        private string _login;
-        private string _password;
-
-        public WorkspaceService(IFlurlClientFactory flurlClientFac)
+        public WorkspaceService(IFlurlClientFactory flurlClientFac, AuthDataContainer authDataContainer) : base(flurlClientFac, authDataContainer)
         {
-            _flurlClientFac = flurlClientFac;
-        }
-
-        public void Configure(string server, string login, string password)
-        {
-            _server = server;
-            _login = login;
-            _password = password;
-        }
-
-        private IFlurlRequest request()
-        {
-            if (_flurlClient == null)
-            {
-                _flurlClient = _flurlClientFac.Get(_server);
-                _flurlClient.WithBasicAuth(_login, _password);
-            }
-
-            return _flurlClient.Request().AppendPathSegment("workspaces");
         }
 
         public async Task<ICollection<Workspace>> GetWorkspaces()
         {
-            var workspaceResponse = await request().GetJsonAsync<WorkspaceResponse>();
-            return workspaceResponse?.Workspaces?.Workspace;
+            var workspaceResponse = await Request("workspaces")
+                .GetJsonAsync<WorkSpacesResponse>();
+            return workspaceResponse?.WorkSpaceList?.Workspaces;
         }
 
-        public async Task<bool> AddWorkspace(string Name, string Href)
+        public async Task<bool> CreateWorkspace(string name, string href)
         {
-            var created = await request().PostJsonAsync(new
+            try
             {
-                name = Name,
-                href = Href
-            }).ReceiveString();
-            return created == Name;
+                var created = await Request("workspaces")
+                    .PostJsonAsync(new
+                {
+                    workspace = new
+                    {
+                        name,
+                        href
+                    }
+                });
+                return created.StatusCode == 201;
+            }
+            catch (FlurlHttpException)
+            {
+                return false;
+            }
+        }
+
+        public async Task<WorkspaceDetailInfo> GetWorkspace(string name)
+        {
+            var detailWorkSpaceResponse = await Request("workspaces", name)
+                .GetJsonAsync<WorkSpaceContainer>();
+            return detailWorkSpaceResponse.WorkspaceDetailInfo;
+        }
+
+        public async Task UpdateWorkspace(string name, WorkspaceDetailInfo workspaceDetailInfo)
+        {
+            await Request("workspaces", name)
+                .PutJsonAsync(new WorkSpaceContainer{WorkspaceDetailInfo = workspaceDetailInfo});
+        }
+
+        public async Task DeleteWorkspace(string name)
+        {
+            await Request("workspaces", name).DeleteAsync();
         }
     }
 
-    class WorkspaceResponse
+    [SuppressMessage("ReSharper", "StringLiteralTypo")]
+    class WorkSpacesResponse
     {
         [JsonProperty("workspaces")]
-        public WorkspaceList Workspaces { get; set; }
+        public WorkSpaceList WorkSpaceList { get; set; }
     }
 
-    class WorkspaceList
+    class WorkSpaceList
     {
         [JsonProperty("workspace")]
-        public ICollection<Workspace> Workspace { get; set; }
+        public ICollection<Workspace> Workspaces { get; set; }
+    }
+
+    class WorkSpaceContainer
+    {
+        [JsonProperty("workspace")]
+        public WorkspaceDetailInfo WorkspaceDetailInfo { get; set; }
     }
 }
