@@ -12,7 +12,7 @@ namespace GeoWrapper.Models
 
         [JsonProperty("isolated")]
         public bool Isolated { get; set; }
-        
+
         [JsonProperty("dateCreated"), JsonConverter(typeof(CustomDateTimeConverter))]
         public DateTimeOffset DateCreated { get; set; }
 

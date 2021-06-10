@@ -30,7 +30,7 @@ namespace GeoWrapper.Services
             try
             {
                 var created = await Request("workspaces", workspaceName, "datastores", dataStoreName, "featuretypes")
-                    .PostJsonAsync(new FeatureTypeDetailInfoContainer{ FeatureTypeDetailInfo = featureTypeDetailInfo});
+                    .PostJsonAsync(new FeatureTypeDetailInfoContainer { FeatureTypeDetailInfo = featureTypeDetailInfo });
                 return created.StatusCode == 201;
             }
             catch (FlurlHttpException)
@@ -42,7 +42,7 @@ namespace GeoWrapper.Services
         public async Task<FeatureTypeDetailInfo> GetFeatureType(string workspaceName, string dataStoreName, string featureTypeName)
         {
             var featureTypeDetailInfoContainer = await Request("workspaces", workspaceName, "datastores", dataStoreName, "featuretypes", featureTypeName + ".json")
-                .GetJsonAsync< FeatureTypeDetailInfoContainer>();
+                .GetJsonAsync<FeatureTypeDetailInfoContainer>();
             return featureTypeDetailInfoContainer?.FeatureTypeDetailInfo;
         }
 

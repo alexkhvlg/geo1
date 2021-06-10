@@ -25,7 +25,7 @@ namespace GeoWrapper.Services
             try
             {
                 var created = await Request("workspaces", workspaceName, "datastores")
-                    .PostJsonAsync(new DateStoreContainer{ DataStoreDetailInfo = dataStoreDetailInfo});
+                    .PostJsonAsync(new DateStoreContainer { DataStoreDetailInfo = dataStoreDetailInfo });
                 return created.StatusCode == 201;
             }
             catch (FlurlHttpException)

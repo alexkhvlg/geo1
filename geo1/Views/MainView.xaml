@@ -7,12 +7,13 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         d:DesignHeight="500" d:DesignWidth="800">
-    <Grid>
+    <Grid IsEnabled="{Binding IsEnabledAllControls}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -29,7 +30,8 @@
         <TextBox Grid.Row="2" Grid.Column="1" Margin="2" x:Name="Password" />
         <Button Grid.Row="2" Grid.Column="2" Margin="2" x:Name="Send" MinWidth="50" Content="Send" />
 
-        <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="LogTextBox"
+        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" x:Name="LogTextBox"
+                 Margin="2"
                  TextWrapping="NoWrap"
                  AcceptsReturn="True"
                  AcceptsTab="True"
@@ -37,5 +39,9 @@
                  VerticalScrollBarVisibility="Auto"
                  HorizontalScrollBarVisibility="Auto"
                  SpellCheck.IsEnabled="False" />
+        
+        <StatusBar Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" >
+            <TextBlock></TextBlock>
+        </StatusBar>
     </Grid>
 </Window>

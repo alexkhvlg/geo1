@@ -29,13 +29,13 @@ namespace GeoWrapper.Services
             {
                 var created = await Request("workspaces")
                     .PostJsonAsync(new
-                {
-                    workspace = new
                     {
-                        name,
-                        href
-                    }
-                });
+                        workspace = new
+                        {
+                            name,
+                            href
+                        }
+                    });
                 return created.StatusCode == 201;
             }
             catch (FlurlHttpException)
@@ -54,7 +54,7 @@ namespace GeoWrapper.Services
         public async Task UpdateWorkspace(string name, WorkspaceDetailInfo workspaceDetailInfo)
         {
             await Request("workspaces", name)
-                .PutJsonAsync(new WorkSpaceContainer{WorkspaceDetailInfo = workspaceDetailInfo});
+                .PutJsonAsync(new WorkSpaceContainer { WorkspaceDetailInfo = workspaceDetailInfo });
         }
 
         public async Task DeleteWorkspace(string name)
