@@ -94,8 +94,8 @@ namespace geo1.ViewModels
             IsEnabledAllControls = false;
             try
             {
-                //var factory = new PerBaseUrlFlurlClientFactory();
-                //var authDataContainer = new AuthDataContainer(Server, Login, Password);
+                var factory = new PerBaseUrlFlurlClientFactory();
+                var authDataContainer = new AuthDataContainer(Server, Login, Password);
                 //var ws = new WorkspaceService(factory, authDataContainer);
                 //await ShowWorkspaceList(ws);
                 //await CreateWorkspace(ws);
@@ -107,10 +107,12 @@ namespace geo1.ViewModels
                 //var ds = new DataStoreService(factory, authDataContainer);
                 //await ShowDataStore(ds, "sf", "sf");
 
-                //var fs = new FeatureTypeService(factory, authDataContainer);
+                var fs = new FeatureTypeService(factory, authDataContainer);
                 //await ShowFeatureTypes(fs);
 
                 await CreateNewLayerScenario();
+                //await fs.RecalculateFeatureType("nyc", "nyc_buildings", "nyc_feature");
+                //await ShowFeatureType(fs, "nyc", "nyc_buildings", "nyc_feature");
             }
             finally
             {

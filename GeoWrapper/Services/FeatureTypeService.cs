@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Flurl.Http;
 using Flurl.Http.Configuration;
@@ -56,6 +52,14 @@ namespace GeoWrapper.Services
         {
             await Request("workspaces", workspaceName, "datastores", dataStoreName, "featuretypes", featureTypeName + ".json")
                 .DeleteAsync();
+        }
+
+        public async Task RecalculateFeatureType(string workspaceName, string dataStoreName, string featureTypeName)
+        {
+            var r = Request("workspaces", workspaceName, "datastores", dataStoreName, "featuretypes", featureTypeName + ".json");
+            var json = await r.GetStringAsync();
+            r = r.SetQueryParam("recalculate", "nativebbox,latlonbbox");
+            await r.PutJsonAsync(JsonConvert.DeserializeObject(json));
         }
     }
 

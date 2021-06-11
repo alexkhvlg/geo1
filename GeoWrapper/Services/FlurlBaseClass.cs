@@ -30,7 +30,6 @@ namespace GeoWrapper.Services
                 _flurlClient = _flurlClientFac.Get(_authDataContainer.Server);
                 _flurlClient.WithBasicAuth(_authDataContainer.Login, _authDataContainer.Password);
             }
-
             return segments?.Length > 0 ? _flurlClient.Request().AppendPathSegments(segments) : _flurlClient.Request();
         }
 
