@@ -177,7 +177,6 @@ namespace geo1.ViewModels
                     })
                 };
 
-                
                 var featureTypeDetailInfo = new FeatureTypeDetailInfo
                 {
                     Name = "nyc_feature",
