@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 
@@ -31,11 +26,6 @@ namespace GeoWrapper.Services
                 _flurlClient.WithBasicAuth(_authDataContainer.Login, _authDataContainer.Password);
             }
             return segments?.Length > 0 ? _flurlClient.Request().AppendPathSegments(segments) : _flurlClient.Request();
-        }
-
-        public virtual async Task Create()
-        {
-
         }
     }
 }
