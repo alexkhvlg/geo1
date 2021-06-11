@@ -59,7 +59,8 @@ namespace GeoWrapper.Services
 
         public async Task DeleteWorkspace(string name)
         {
-            await Request("workspaces", name).DeleteAsync();
+            await Request("workspaces", name)
+                .DeleteAsync();
         }
     }
 
