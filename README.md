@@ -1,3 +1,3 @@
-Test project form ject GeoServer REST API
+Test project for explore GeoServer REST API
 
 http://geoserver.org/
